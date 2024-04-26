@@ -1,0 +1,135 @@
+{%extends "partials/base.html"%}
+{%load static%}
+{%block title%}Home{%endblock%}
+
+{%block content%}
+<style>
+    .bbg {
+          background: #E1F7F5;
+    }
+
+</style>
+
+<div class="px-4 py-3 my-5 text-center">
+    <div class="badge mb-3 shadow-sm bg-warning rounded-pill">Whats new in AWS ?</div>
+
+    <img class="d-block mx-auto mb-4" src="{%static 'app_images/AWS LOGO.png'%}" alt="" width="100">
+    <!--    <h1 class="display-5 fw-bold text-body-emphasis">Innovate. Transform. Conquer.</h1>-->
+    <h1 class="display-5 fw-bold text-body-emphasis">Analytics web systems</h1>
+
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4 fw-normal" style="font-size: 17px;">Innovate your strategies, Transform your data, Conquer
+            your goals—take
+            the first
+            and remarkable step with
+            Analytics Web Systems today.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get started</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Explore</button>
+        </div>
+    </div>
+</div>
+<!--PROJECTS-->
+<div class="d-flex justify-content-between mb-2">
+    <h2>Our projects</h2>
+    <a href="#" class="text-decoration-none">View all projects <span
+            class="badge bg-body-tertiary text-info rounded-pill">24+</span></a>
+
+</div>
+<div class="container bbg p-3 rounded-3">
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-6 col-lg-4 sm-4">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                </svg>
+                <div class="card-body">
+                    <h5 class="card-title">Project.description</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn border btn-sm bg-body-tertiary">View</button>
+                            <!--                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                        </div>
+                        <!--                        <small class="text-body-secondary">9 mins</small>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 sm-4">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                </svg>
+                <div class="card-body">
+                    <h5 class="card-title">Project.description</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn border btn-sm bg-body-tertiary">View</button>
+                            <!--                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                        </div>
+                        <!--                        <small class="text-body-secondary">9 mins</small>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><br><br>
+
+<!--TESTIMONIALS-->
+<h3>Testimonials</h3>
+<p style="font-family: 'Pacifico', serif; " class="fs-6">See what our past clients have to say about us</p>
+<div class="container d-flex justify-content-between p-2 rounded-3">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 my-2 text-center">
+            <div class="card p-2 text-bg-info shadow-sm text-white">
+                <div class="text-center">
+                    <img style="object-fit: cover;" width="80" class="rounded-circle"
+                         src="https://i.pinimg.com/564x/d4/2d/9c/d42d9c6ff7455237b43289c8f3ab6b25.jpg" alt="">
+                    <h4 class="fw-normal"><strong>Vince13</strong></h4>
+                    <p style="font-size: 14px;">Some representative placeholder content for the three columns of text
+                        below
+                        the
+                        carousel. This is the first
+                        column.</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-sm w-50 bg-body-secondary text-info">view details</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-6 my-2 text-center">
+            <div class="card p-2 text-bg-info shadow-sm text-white">
+                <div class="text-center">
+                    <img style="object-fit: cover;" width="80" class="rounded-circle"
+                         src="https://i.pinimg.com/564x/d4/2d/9c/d42d9c6ff7455237b43289c8f3ab6b25.jpg" alt="">
+                    <h4 class="fw-normal"><strong>Vince13</strong></h4>
+                    <p style="font-size: 14px;">Some representative placeholder content for the three columns of text
+                        below
+                        the
+                        carousel. This is the first
+                        column.</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-sm w-50 bg-body-secondary text-info">view details</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{%endblock%}

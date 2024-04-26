@@ -1,0 +1,107 @@
+{%extends "partials/base.html"%}
+{%block title%}Inbox{%endblock%}
+{%load static%}
+{%block content%}
+<style>
+    .message-icon {
+        display: none;
+    }
+    .scrollable-row {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.item {
+    flex: 0 0 auto;
+    margin-right: 25px;
+    text-align: center;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.item p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+</style>
+
+<!--AcTIVE MEMBERS-->
+<h1 class="mt-3">Chats</h1>
+<div class="alert alert-info justify-content-center d-flex align-items-center" role="alert">
+    <i class="bi fs-4 bi-chat-square-text-fill mb-4 mx-3"></i>
+    <div class="d-flex flex-column">
+        <h4> Welcome to messaging.</h4>
+        <h6>If you have any enquiries please Speak to any of our <strong>representatives right away</strong></h6>
+        <small class="text-muted"><i>Typically replies under 1 hour</i></small>
+    </div>
+
+
+</div>
+<br>
+<h5>Our representatives <span class="badge bg-body-tertiary text-info">1</span></h5>
+<div class="scrollable-row bg-body-tertiary px-4 pt-2 rounded-4">
+    {%for rep in representatives%}
+    <div class="item">
+        <a href="{%url 'chat:send_message' rep.id%}" class="text-decoration-none text-dark">
+            <img width="45" height="45" class="border border-dark" src="https://i.pinimg.com/474x/23/78/f5/2378f527c36607ea7c1e77ed3cef115e.jpg" alt="User 1">
+            <p>{{rep.user.username}} <i class="bi text-primary bi-patch-check-fill"></i></p>
+        </a>
+    </div>
+    {%endfor%}
+    <div class="item">
+        <a href="#" class="text-decoration-none text-dark">
+            <img width="45" height="45" class="border border-dark" src="{%static 'app_images/plus.gif'%}" alt="User 1">
+            <p>More</p>
+        </a>
+    </div>
+<!--        <div class="item opacity-40">-->
+<!--            <a href="#" class="text-decoration-none text-dark">-->
+<!--                <img src="https://i.pinimg.com/236x/1a/17/cb/1a17cb66954f67a132f22ee865aa2469.jpg" alt="User 1">-->
+<!--                <p>Phero <i class="bi text-primary bi-patch-check-fill"></i></p>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="item opacity-40">-->
+<!--            <a href="#" class="text-decoration-none text-dark">-->
+<!--                <img src="https://i.pinimg.com/474x/23/78/f5/2378f527c36607ea7c1e77ed3cef115e.jpg" alt="User 1">-->
+<!--                <p>Bolt <i class="bi text-primary bi-patch-check-fill"></i></p>-->
+<!--            </a>-->
+<!--        </div>-->
+    <!-- Add more items as needed -->
+</div>
+<hr>
+<h5>Conversations <span class="badge bg-body-tertiary text-info">1</span></h5>
+<div class="d-flex w-100" style="">
+    {%if conversations%}
+    {% for conversation in conversations %}
+
+    <a href="{% url 'chat:conversation_detail' conversation.representative.id %}" class="text-decoration-none">
+        <div class="bg-body-tertiary w-100 rounded-4 d-flex p-4 align-items-center">
+            <img width="60" height="60" class="border border-dark rounded-circle mx-3" src="https://i.pinimg.com/474x/23/78/f5/2378f527c36607ea7c1e77ed3cef115e.jpg" alt="User 1">
+
+
+        <a class="text-decoration-none text-dark mx-3" href="{% url 'chat:conversation_detail' conversation.representative.id %}">{{conversation.representative.user.username}} <i class="bi text-primary bi-patch-check-fill"></i></a>
+        </div>
+    </a>
+    {% endfor %}
+
+    {%else%}
+    <div class="container text-center">
+        <img width="200" src="{%static 'app_images/ASSET9.png'%}" alt="">
+        <h5>Start messaging</h5>
+        <p>Select a <span class="span text-info">representative</span> to start chatting...</p>
+
+    </div>
+    {%endif%}
+
+
+</div><br><br><br><br><br><br>
+
+
+{%endblock%}
