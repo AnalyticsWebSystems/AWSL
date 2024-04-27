@@ -1,4 +1,5 @@
 from django.db import models
+from userauths.models import User
 
 
 class Technology(models.Model):
@@ -42,3 +43,11 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Testimonial(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    content = models.TextField(null=True)
+
+    def __str__(self):
+        return self.user.username

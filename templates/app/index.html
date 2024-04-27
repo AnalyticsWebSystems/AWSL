@@ -7,6 +7,9 @@
     .bbg {
           background: #E1F7F5;
     }
+    #hover {
+        background: black;
+    }
 
 </style>
 
@@ -30,29 +33,44 @@
     </div>
 </div>
 <!--PROJECTS-->
+
 <div class="d-flex justify-content-between mb-2">
     <h2>Our projects</h2>
     <a href="#" class="text-decoration-none">View all projects <span
-            class="badge bg-body-tertiary text-info rounded-pill">24+</span></a>
+            class="badge bg-body-tertiary text-success rounded-pill">{{project_count}}+</span></a>
 
 </div>
+
 <div class="container bbg p-3 rounded-3">
     <div class="row d-flex justify-content-between">
-        <div class="col-md-6 col-lg-4 sm-4">
+        {%for pro in projects%}
+        <div class="col-md-6 my-2 col-lg-4 sm-4">
             <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
+                <img src="{{pro.image.url}}" class="" width="100%" height="225" alt="" style="object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">Project.description</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="card-title mx-2"><strong>{{pro.title}}</strong></h5>
+
+                        <span class="badge text-bg-dark">{{pro.client}}</span>
+
+                    </div>
+                    {% with words=pro.description|wordcount %}
+                    {% if words > 9 %}
+                    <p class="card-text">
+                        {{ pro.description|slice:":100" }} ... <a href="#">Read more</a>
+                    </p>
+                    {% else %}
+                    <p class="card-text">
+                        {{ pro.description }}
+                    </p>
+                    {% endif %}
+                    {% endwith %}
+                    {%for t in pro.technologies_used.all%}
+                    <span class="badge mb-2 shadow-sm rounded-pill bg-body-tertiary text-info">{{t.name}}</span>
+                    {%endfor%}
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group w-100">
-                            <button type="button" class="btn border btn-sm bg-body-tertiary">View</button>
+                            <button type="button" id="hover" class="btn border btn-sm bg-body-tertiary">View</button>
                             <!--                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                         </div>
                         <!--                        <small class="text-body-secondary">9 mins</small>-->
@@ -60,28 +78,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 sm-4">
-            <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
-                <div class="card-body">
-                    <h5 class="card-title">Project.description</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group w-100">
-                            <button type="button" class="btn border btn-sm bg-body-tertiary">View</button>
-                            <!--                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-                        </div>
-                        <!--                        <small class="text-body-secondary">9 mins</small>-->
-                    </div>
-                </div>
-            </div>
-        </div>
+        {%endfor%}
+        <!--        <div class="col-md-6 col-lg-4 sm-4">-->
+        <!--            <div class="card shadow-sm">-->
+        <!--                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"-->
+        <!--                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"-->
+        <!--                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>-->
+        <!--                    <rect width="100%" height="100%" fill="#55595c"></rect>-->
+        <!--                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>-->
+        <!--                </svg>-->
+        <!--                <div class="card-body">-->
+        <!--                    <h5 class="card-title">Project.description</h5>-->
+        <!--                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to-->
+        <!--                        additional content. This content is a little bit longer.</p>-->
+        <!--                    <div class="d-flex justify-content-between align-items-center">-->
+        <!--                        <div class="btn-group w-100">-->
+        <!--                            <button type="button" class="btn border btn-sm bg-body-tertiary">View</button>-->
+        <!--                            &lt;!&ndash;                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>&ndash;&gt;-->
+        <!--                        </div>-->
+        <!--                        &lt;!&ndash;                        <small class="text-body-secondary">9 mins</small>&ndash;&gt;-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
     </div>
 </div><br><br>
@@ -91,17 +110,14 @@
 <p style="font-family: 'Pacifico', serif; " class="fs-6">See what our past clients have to say about us</p>
 <div class="container d-flex justify-content-between p-2 rounded-3">
     <div class="row">
-        <div class="col-lg-4 col-md-6 my-2 text-center">
+        {% for test in testimonials%}
+        <div class="col-lg-6 col-md-6 my-2 text-center">
             <div class="card p-2 text-bg-info shadow-sm text-white">
                 <div class="text-center">
                     <img style="object-fit: cover;" width="80" class="rounded-circle"
                          src="https://i.pinimg.com/564x/d4/2d/9c/d42d9c6ff7455237b43289c8f3ab6b25.jpg" alt="">
-                    <h4 class="fw-normal"><strong>Vince13</strong></h4>
-                    <p style="font-size: 14px;">Some representative placeholder content for the three columns of text
-                        below
-                        the
-                        carousel. This is the first
-                        column.</p>
+                    <h4 class="fw-normal"><strong>{{test.user.username}}</strong></h4>
+                    <p style="font-size: 14px;">{{test.content}}</p>
                     <div class="text-center">
                         <a href="#" class="btn btn-sm w-50 bg-body-secondary text-info">view details</a>
 
@@ -110,26 +126,7 @@
             </div>
 
         </div>
-
-        <div class="col-lg-4 col-md-6 my-2 text-center">
-            <div class="card p-2 text-bg-info shadow-sm text-white">
-                <div class="text-center">
-                    <img style="object-fit: cover;" width="80" class="rounded-circle"
-                         src="https://i.pinimg.com/564x/d4/2d/9c/d42d9c6ff7455237b43289c8f3ab6b25.jpg" alt="">
-                    <h4 class="fw-normal"><strong>Vince13</strong></h4>
-                    <p style="font-size: 14px;">Some representative placeholder content for the three columns of text
-                        below
-                        the
-                        carousel. This is the first
-                        column.</p>
-                    <div class="text-center">
-                        <a href="#" class="btn btn-sm w-50 bg-body-secondary text-info">view details</a>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        {%endfor%}
     </div>
 </div>
 {%endblock%}
