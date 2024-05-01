@@ -76,8 +76,12 @@ def conversation_detail(request, representative_id):
 @login_required
 def inbox(request):
     representatives = Representative.objects.all()
+    rep_count = representatives.count()
     conversations = Conversation.objects.filter(user=request.user)
+    convo_count = conversations.count()
     return render(request, 'chat/inbox.html', {
         'conversations': conversations,
         'representatives': representatives,
+        'rep_count': rep_count,
+        'convo_count': convo_count,
     })

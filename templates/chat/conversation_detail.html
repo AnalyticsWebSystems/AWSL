@@ -11,12 +11,13 @@
     }
 </style>
 <div class="container">
-    <div class="d-flex text-center flex-column">
+    <div class="d-flex text-center flex-column bg-body-tertiary rounded-4 shadow-sm">
         <h5 class="text-center mt-3">{{ representative.user.username }} <i
                 class="bi text-primary bi-patch-check-fill"></i></h5>
         <p><i>Typically replies under 1 hour...</i></p>
 
     </div>
+    <hr>
     <br><br>
 
     {%if conversation.messages%}
@@ -25,17 +26,17 @@
 
         <div class="container rounded-5 p-3 d-flex flex-column">
             <div class="d-flex align-items-center">
-                <img src="https://i.pinimg.com/474x/23/78/f5/2378f527c36607ea7c1e77ed3cef115e.jpg" width="45"
+                <img src="https://i.pinimg.com/564x/03/17/80/031780a9662ef257af01405e924b0d62.jpg" width="45"
                      height="45" class="rounded-5 mx-2 border border-dark" alt="">
                 <h6 class="mt-2">{%if message.sender == request.user%}You{%else%}{{ message.sender.username }}<i
                         class="bi text-primary bi-patch-check-fill"></i>{%endif%} . <span><small
-                        style="font-size: 10px;"
-                        class="text-muted">{{message.timestamp|timesince}} ago</small></span>
+                        style="font-size: 12px;"
+                        class="text-muted">{{message.timestamp|timesince}} ago <i class="bi bi-globe-europe-africa"></i></small></span>
                 </h6>
 
 
             </div>
-            <p class="mx-5" style="font-size: 22px;">{{ message.content }}</p>
+            <p class="mx-13 mt-2" style="font-size: 20px;">{{ message.content }}</p>
 
             <hr>
         </div>
@@ -52,7 +53,7 @@
     {%else%}
     <div class="container mt-3 text-center">
         <h4>Start chatting</h4>
-        <img width="200" src="{%static 'app_images/panda.gif'%}" alt="">
+        <img width="200" src="{%static 'app_images/dog.gif'%}" alt="">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
