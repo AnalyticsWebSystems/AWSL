@@ -26,7 +26,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["awsl.onrender.com", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://awsl.onrender.com"]
+
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
