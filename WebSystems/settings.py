@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v@gwd5on%=j=p65(8r-(=logts$pu_bie7&u15!d!5#0x+1#cx'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = "userauths:login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # settings.py
 
@@ -87,6 +92,23 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASE_URL = config("DATABASE_URL", default="")
+database_url = os.environ.get("DATABASE_URL")
+
+DATABASES["default"] = dj_database_url.parse("postgres://websystems_db_user:ypHncyAvO4urQxQsBoZHEgZCBa9DzjQq@dpg-coqaikcf7o1s73ee7te0-a.oregon-postgres.render.com/websystems_db")
+
+# DATABASES = {
+#     'default': {
+#         'DATABASE_URL': "postgres://websystems_db_user:ypHncyAvO4urQxQsBoZHEgZCBa9DzjQq@dpg-coqaikcf7o1s73ee7te0-a.oregon-postgres.render.com/websystems_db",
+#         'ENGINE': "django.db.backends.postgresql_psycopg2",
+#         'NAME': 'websystems-db',
+#         'USER': 'websystems_db_user',
+#         'PASSWORD': "ypHncyAvO4urQxQsBoZHEgZCBa9DzjQq",
+#         'HOST': "dpg-coqaikcf7o1s73ee7te0-a",
+#         'PORT': 5432,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

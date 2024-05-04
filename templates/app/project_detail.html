@@ -68,6 +68,12 @@
 
     <p><strong>Description:</strong> {{ project.description }}</p>
     <hr>
+    <a href="#"
+       class="d-flex mb-2 align-items-center link-body-emphasis text-decoration-none">
+        <img src="https://github.com/mdo.png" alt="" width="40" height="40"
+             class="rounded-circle me-2">
+        <strong>Somebody</strong>
+    </a>
     <p><strong>Service: </strong><span class="badge bg-body-secondary text-primary">{{project.service.title}}</span></p>
     <p><strong>Technologies used: </strong>{%for t in project.technologies_used.all%}<span
             class="badge bg-body-secondary text-secondary">{{t.name}}</span> {%endfor%}</p>
@@ -88,7 +94,7 @@
         <div class="col col-md-4 col-sm-4 col-lg-4 border mx-2 rounded-2 p-2 shadow-sm">
             <div class="d-flex">
                 <h6 class="fs-5 text-body-emphasis text-primary">{{comment.user.username}}</h6>
-<!--                <small class="text-muted">{{comment.created_at|timesince}}</small>-->
+                <!--                <small class="text-muted">{{comment.created_at|timesince}}</small>-->
 
             </div>
             <p class="fs-6">{{comment.content}}.</p>

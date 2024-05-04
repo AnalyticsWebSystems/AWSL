@@ -10,6 +10,22 @@
     #hover {
         background: black;
     }
+    .hoverme {
+        background: #6367AF;
+        color: #fff;
+    }
+    .hoverme:hover {
+        background: #313559;
+        color: #fff;
+    }
+    .hoverme_outline {
+        border: 2px solid #6367AF;
+        color: #6367AF;
+    }
+    .hoverme_outline:hover {
+        border: 2px solid #313559;
+        color: #313559;
+    }
 
 </style>
 
@@ -27,16 +43,17 @@
             and remarkable step with
             Analytics Web Systems today.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get started</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Explore</button>
+            <a href="#" style="" class="btn hoverme btn-lg px-4 gap-3">Get started</a>
+            <!--            <button style="" type="button" class="btn btn-lg px-4 gap-3"></button>-->
+            <a href="#" style="" class="btn hoverme_outline btn-lg px-4 gap-3">Explore</a>
         </div>
     </div>
 </div>
 <!--PROJECTS-->
 
 <div class="d-flex justify-content-between align-items-center mb-2">
-    <h2>Our projects</h2>
-    <a href="#" class="text-decoration-none">View all projects <span
+    <h2>Our portfolio</h2>
+    <a href="{%url 'app:projects'%}" class="text-decoration-none">See all <span
             class="badge bg-body-tertiary text-success rounded-pill">{{project_count}}+</span></a>
 
 </div>
@@ -45,38 +62,53 @@
     <div class="row d-flex justify-content-between">
         {%for pro in projects%}
         <div class="col-md-6 my-2 col-lg-6 sm-4">
-            <div class="card shadow-sm">
-                <img src="{{pro.image.url}}" class="" width="100%" height="225" alt="" style="object-fit: cover;">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="card-title mx-2"><strong>{{pro.title}}</strong></h5>
+            <a href="{%url 'app:project_detail' pro.id%}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm">
+                    <img src="{{pro.image.url}}" class="" width="100%" height="225" alt="" style="object-fit: cover;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="card-title mx-2"><strong>{{pro.title}}</strong></h5>
 
-                        <span class="badge text-bg-dark">{{pro.client}}</span>
+                            <span class="badge text-bg-dark">{{pro.client}}</span>
 
-                    </div>
-                    {% with words=pro.description|wordcount %}
-                    {% if words > 9 %}
-                    <p class="card-text">
-                        {{ pro.description|slice:":100" }} ... <a href="#">Read more</a>
-                    </p>
-                    {% else %}
-                    <p class="card-text">
-                        {{ pro.description }}
-                    </p>
-                    {% endif %}
-                    {% endwith %}
-                    {%for t in pro.technologies_used.all%}
-                    <span class="badge mb-2 shadow-sm rounded-pill bg-body-tertiary text-info">{{t.name}}</span>
-                    {%endfor%}
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group w-100">
-                            <a href="{%url 'app:project_detail' pro.id%}" id="hover"
-                               class="btn border btn-sm bg-body-tertiary">View</a>
+                        </div>
+                        {% with words=pro.description|wordcount %}
+                        {% if words > 9 %}
+                        <p class="card-text">
+                            {{ pro.description|slice:":100" }} ... <a href="{%url 'app:project_detail' pro.id%}">Read
+                            more</a>
+                        </p>
+                        {% else %}
+                        <p class="card-text">
+                            {{ pro.description }}
+                        </p>
+                        {% endif %}
+                        {% endwith %}
+                        <div class="d-flex justify-content-between">
+                            <a href="#"
+                               class="d-flex mb-2 align-items-center link-body-emphasis text-decoration-none">
+                                <img src="https://github.com/mdo.png" alt="" width="30" height="30"
+                                     class="rounded-circle me-2">
+                                <strong>Somebody</strong>
+                            </a>
+                            <div class="d-flex align-items-center">
+                                {%for t in pro.technologies_used.all%}
+                                <span class="badge mb-2 mx-1 shadow-sm rounded-pill bg-body-tertiary text-info">{{t.name}}</span>
+                                {%endfor%}
+                            </div>
 
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group w-100">
+                                <a href="{%url 'app:project_detail' pro.id%}" id="hover"
+                                   class="btn border btn-sm bg-body-tertiary">View</a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </a>
         </div>
         {%endfor%}
 
@@ -85,7 +117,7 @@
 
 <!--TESTIMONIALS-->
 <h3>Testimonials</h3>
-<p style="font-family: 'Pacifico', serif; " class="fs-6">See what our past clients have to say about us</p>
+<p style="" class="fs-6">See what our past clients have to say about us</p>
 <div class="container d-flex justify-content-between p-2 rounded-3">
     <div class="row">
         {% for test in testimonials%}

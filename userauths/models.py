@@ -1,5 +1,10 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.db.models.signals import post_save
+
+from django.dispatch import receiver
+
+from PIL import Image
 
 
 class CustomUserManager(BaseUserManager):
@@ -26,7 +31,7 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    # Add any other required fields here
+    is_active = models.BooleanField(default=False)
     bio = models.TextField(blank=True)
     phone = models.CharField(max_length=100)
     address = models.CharField(max_length=100, blank=True)
@@ -38,3 +43,34 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to="profile_pics", default="default.png")
+
+    def __str__(self):
+        return str(f"{self.user.username}'s - Profile")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
