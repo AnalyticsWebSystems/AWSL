@@ -73,6 +73,7 @@
             bottom: 100px;
             right: 40px;
             z-index: 10000; /* Ensure it's above other content */
+            shadow: 2px black rgba(0,0,0,0.6);
             /* Add any additional styling you need */
         }
 
@@ -89,6 +90,22 @@
         .message-icon:hover + .tooltip {
             display: block;
         }
+    .hoverme {
+        background: #6367AF;
+        color: #fff;
+    }
+    .hoverme:hover {
+        background: #313559;
+        color: #fff;
+    }
+    .hoverme_outline {
+        border: 2px solid #6367AF;
+        color: #6367AF;
+    }
+    .hoverme_outline:hover {
+        border: 2px solid #313559;
+        color: #313559;
+    }
 </style>
 
 
@@ -140,10 +157,10 @@
             </form>
             <div class="div m-2">
                 {%if user.is_authenticated%}
-                <a href="{%url 'userauths:logout'%}" class="btn btn-outline-danger"><i
+                <a href="{%url 'userauths:logout'%}" class="btn hoverme_outline"><i
                         class="bi fs-6 bi-box-arrow-left"></i> Sign off</a>
                 {%else%}
-                <a href="{%url 'app:splash'%}" class="btn btn-primary">Login / Register</a>
+                <a href="{%url 'app:splash'%}" class="btn hoverme">Login / Register</a>
                 {%endif%}
 
 
@@ -184,7 +201,7 @@
     });
 </script>
 
-<a href="{% url 'chat:inbox' %}" class="message-icon px-2 shadow-sm rounded-circle bg-dark">
+<a href="{% url 'chat:inbox' %}" class="message-icon px-2 shadow-md rounded-circle bg-dark">
     <div class="d-flex flex-column align-items-center">
         <span class="badge bg-primary position-relative">Chat us</span>
         <i class="bi shadow-md text-white fs-2 bi-chat-quote-fill"></i><span

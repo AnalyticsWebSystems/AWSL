@@ -72,7 +72,8 @@
        class="d-flex mb-2 align-items-center link-body-emphasis text-decoration-none">
         <img src="https://github.com/mdo.png" alt="" width="40" height="40"
              class="rounded-circle me-2">
-        <strong>Somebody</strong>
+        <strong>{%if project.champion%}{{project.champion.user.username}}{%else%}Someone{%endif%} <i
+                class="bi text-primary bi-patch-check-fill"></i></strong>
     </a>
     <p><strong>Service: </strong><span class="badge bg-body-secondary text-primary">{{project.service.title}}</span></p>
     <p><strong>Technologies used: </strong>{%for t in project.technologies_used.all%}<span

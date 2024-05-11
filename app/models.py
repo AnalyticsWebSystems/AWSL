@@ -24,6 +24,7 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     client = models.CharField(max_length=100)
+    champion = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
     team = models.ManyToManyField('TeamMember', related_name='projects')
     technologies_used = models.ManyToManyField('Technology', related_name='projects')
